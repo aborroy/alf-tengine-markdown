@@ -1,0 +1,4 @@
+org/alfresco/transformer/executors/MarkdownToPdfTransformerExecutor.class
+org/alfresco/transformer/TransformerController.class
+org/alfresco/transformer/TransformerController$1.class
+org/alfresco/transformer/Application.class
