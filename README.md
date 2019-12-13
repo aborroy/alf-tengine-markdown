@@ -23,3 +23,7 @@ $ docker-compose up --build --force-recreate
 ## Testing
 
 http://localhost:8096
+
+## Reference
+
+https://github.com/Alfresco/acs-packaging/blob/master/docs/custom-transforms-and-renditions.md
