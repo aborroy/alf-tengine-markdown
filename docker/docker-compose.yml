@@ -55,7 +55,6 @@ services:
                 "
         volumes:
           - ./rendition-defs-markdown.json:/usr/local/tomcat/shared/classes/alfresco/extension/transform/renditions/rendition-defs-markdown.json
-          - ./pipeline-defs-markdown.json:/usr/local/tomcat/shared/classes/alfresco/extension/transform/pipelines/pipeline-defs-markdown.json
 
     alfresco-pdf-renderer:
         image: alfresco/alfresco-pdf-renderer:2.1.0
@@ -158,13 +157,23 @@ services:
             - 61616:61616 # OpenWire
             - 61613:61613 # STOMP
 
+    content-app:
+        image: alfresco/alfresco-content-app:master-latest
+        mem_limit: 256m
+        depends_on:
+            - alfresco
+            - share
+
     proxy:
-        image: alfresco/acs-community-ngnix:1.0.0
+        image: nginx:stable-alpine
         mem_limit: 128m
         depends_on:
             - alfresco
-        ports:
-            - 8080:8080
-        links:
-            - alfresco
+            - solr6
             - share
+            - content-app
+        volumes:
+            - ./config/nginx.conf:/etc/nginx/nginx.conf
+            - ./config/nginx.htpasswd:/etc/nginx/conf.d/nginx.htpasswd
+        ports:
+            - 80:80
