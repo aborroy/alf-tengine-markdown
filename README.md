@@ -12,6 +12,14 @@ $ mvn clean package
 $ docker build . -t alfresco/ats-transformer-markdown:1.0
 ```
 
+## Build sample behaviour for renditions in Share
+
+```
+$ cd markdown-rendition
+
+$ mvn clean package
+```
+
 ## Running with ACS CE 6.2
 
 ```
@@ -35,6 +43,8 @@ $ curl -X POST --header 'Content-Type: application/json' --header 'Accept: appli
 ```
 
 Just be sure to use **id** as **pdf** in this request, that is the value expected by Share to find the renditioned node.
+
+**Note** In this sample a new Behaviour to run Rendition Service V2 when using Share Web App has been added as a behaviour living in `markdown-rendition` project. It's deployed by default with Docker Compose in `docker` folder.
 
 ## Reference
 
