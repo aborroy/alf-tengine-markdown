@@ -1,8 +1,30 @@
 ## Alfresco Transformer from Markdown to PDF
 
-To be used with ACS Community 6.2+
+This project includes a sample Transformer for Alfresco from Markdown to PDF to be used with ACS Community 6.2+
 
-## Build Docker Image
+The Transformer `ats-transformer-markdown` uses the new Local Transform API, that allows to register a Spring Boot Application as a local transformation service.
+
+As this new API is still not integrated with Share Web App and SOLR, an additional repository behaviour `markdown-rendition` is provided. So when a Markdown content node is created or updated the Rendition Service V2 is fired.
+
+Finally, a Docker Compose template is provided in `docker` folder to test all these components together.
+
+```
+.
+├── README.md
+├── ats-transformer-markdown
+├── docker
+│   ├── alfresco
+│   ├── config
+│   ├── docker-compose.yml
+│   └── rendition-defs-markdown.json
+└── markdown-rendition
+```
+
+* `ats-transformer-markdown` contains a Markdown Transformer using the new Local Transform API available from ACS 6.2
+* `docker` contains a Docker Compose template to deploy the transformer and the behaviour in ACS Community 6.2
+* `markdown-rendition` contains a behaviour to fire Rendition Service V2 when a Markdown content node is created or updated
+
+## Build Docker Image for ATS Transformer Markdown
 
 ```
 $ cd ats-transformer-markdown
@@ -29,6 +51,8 @@ $ docker-compose up --build --force-recreate
 ```
 
 ## Testing
+
+A sample web page has been created in order to test the transformer is working:
 
 http://localhost:8096
 
